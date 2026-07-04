@@ -1,0 +1,4 @@
+interface:
+  display_name: "Map Territory Workflow"
+  short_description: "Choose the right unknowns artifact"
+  default_prompt: "Use $map-territory-workflow to choose the right unknown-reduction workflow for this task."

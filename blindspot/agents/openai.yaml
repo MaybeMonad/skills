@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blindspot Pass"
+  short_description: "Find unknown unknowns before costly work"
+  default_prompt: "Use $blindspot to identify relevant unknown unknowns before implementation."

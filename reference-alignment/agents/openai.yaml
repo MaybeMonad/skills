@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reference Alignment"
+  short_description: "Use references to define hard-to-say goals"
+  default_prompt: "Use $reference-alignment to extract requirements from references before implementation."

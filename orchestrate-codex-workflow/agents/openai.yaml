@@ -1,0 +1,7 @@
+interface:
+  display_name: "Codex Workflow Orchestrator"
+  short_description: "Plan, delegate, verify, and finish work"
+  default_prompt: "Use $orchestrate-codex-workflow to plan, harden, execute, and verify this task end to end."
+
+policy:
+  allow_implicit_invocation: true

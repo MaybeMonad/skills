@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implementation Plan Review"
+  short_description: "Plan around decisions likely to change"
+  default_prompt: "Use $implementation-plan-review to draft an implementation plan focused on decisions I may tweak."

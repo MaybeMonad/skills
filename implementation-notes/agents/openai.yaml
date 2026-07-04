@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implementation Notes"
+  short_description: "Log deviations while implementing"
+  default_prompt: "Use $implementation-notes to keep track of decisions, deviations, and edge cases during implementation."

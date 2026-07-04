@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pitch Explainer"
+  short_description: "Package work for review and buy-in"
+  default_prompt: "Use $pitch-explainer to package the prototype, spec, notes, and verification into a reviewer-ready explainer."

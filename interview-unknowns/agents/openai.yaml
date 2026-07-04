@@ -1,0 +1,4 @@
+interface:
+  display_name: "Interview Unknowns"
+  short_description: "Ask high-leverage clarifying questions"
+  default_prompt: "Use $interview-unknowns to interview me about ambiguities that could change the work."

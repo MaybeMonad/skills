@@ -1,0 +1,4 @@
+interface:
+  display_name: "Change Quiz"
+  short_description: "Verify understanding before merging"
+  default_prompt: "Use $change-quiz to explain this change and quiz me before I merge it."

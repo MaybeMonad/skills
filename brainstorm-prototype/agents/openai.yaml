@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brainstorm Prototype"
+  short_description: "Explore options with cheap prototypes"
+  default_prompt: "Use $brainstorm-prototype to explore multiple directions before durable implementation."
