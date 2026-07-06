@@ -1,0 +1,7 @@
+interface:
+  display_name: "Web Clone"
+  short_description: "Clone, study, and remix websites from real source evidence"
+  default_prompt: "Use $web-clone to inspect the real source/runtime evidence before cloning this website."
+
+policy:
+  allow_implicit_invocation: true

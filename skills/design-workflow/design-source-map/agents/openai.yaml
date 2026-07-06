@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Source Map"
+  short_description: "Extract tokens, components, and design constraints from real sources"
+  default_prompt: "Use $design-source-map to ground design work in existing sources."

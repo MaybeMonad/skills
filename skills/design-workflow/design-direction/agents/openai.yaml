@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Direction"
+  short_description: "Commit to a concrete visual system before hi-fi design"
+  default_prompt: "Use $design-direction to define a grounded visual direction."

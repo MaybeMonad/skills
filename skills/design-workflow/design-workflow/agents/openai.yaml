@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Workflow"
+  short_description: "Choose the right design source, direction, prototype, or polish path"
+  default_prompt: "Use $design-workflow to choose the smallest useful design workflow."

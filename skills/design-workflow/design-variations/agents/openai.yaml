@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Variations"
+  short_description: "Generate meaningful design options before committing"
+  default_prompt: "Use $design-variations to compare distinct design directions."

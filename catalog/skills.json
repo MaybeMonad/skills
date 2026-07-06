@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "publishing": {
+    "rule": "Installable skill directories live under skills/<category>/<skill>. Suite folders remain metadata and must not contain installable SKILL.md files.",
+    "verified_commands": [
+      "npx skills add mattpocock/skills --list",
+      "npx skills add /Users/leo/Documents/Projects/skills --list",
+      "npx skills use /Users/leo/Documents/Projects/skills --skill map-territory-workflow",
+      "npx skills use /Users/leo/Documents/Projects/skills --skill web-clone",
+      "npx skills use /Users/leo/Documents/Projects/skills --skill technical-seo",
+      "npx skills use /Users/leo/Documents/Projects/skills --skill design-workflow",
+      "npx skills use /Users/leo/Documents/Projects/skills --skill design-source-map",
+      "npx skills use /Users/leo/Documents/Projects/skills --skill design-direction",
+      "npx skills use /Users/leo/Documents/Projects/skills --skill design-variations",
+      "npx skills use /Users/leo/Documents/Projects/skills --skill design-prototype",
+      "npx skills use /Users/leo/Documents/Projects/skills --skill design-polish"
+    ],
+    "finding": "Default discovery finds skills under skills/<category>/<skill> and ignores arbitrary nested suites/ skills. Current local discovery finds 18 skills."
+  },
+  "categories": [
+    {
+      "id": "unknown-reduction",
+      "label": "Unknown Reduction Workflow",
+      "description": "Skills that keep prompts, plans, implementation, review, and handoff aligned with the real territory.",
+      "skills_folder": "skills/unknown-reduction",
+      "suite_folder": "suites/unknown-reduction",
+      "skills": [
+        {
+          "name": "map-territory-workflow",
+          "path": "skills/unknown-reduction/map-territory-workflow",
+          "role": "router"
+        },
+        {
+          "name": "blindspot",
+          "path": "skills/unknown-reduction/blindspot",
+          "role": "entrypoint"
+        },
+        {
+          "name": "brainstorm-prototype",
+          "path": "skills/unknown-reduction/brainstorm-prototype",
+          "role": "member"
+        },
+        {
+          "name": "interview-unknowns",
+          "path": "skills/unknown-reduction/interview-unknowns",
+          "role": "member"
+        },
+        {
+          "name": "reference-alignment",
+          "path": "skills/unknown-reduction/reference-alignment",
+          "role": "member"
+        },
+        {
+          "name": "implementation-plan-review",
+          "path": "skills/unknown-reduction/implementation-plan-review",
+          "role": "member"
+        },
+        {
+          "name": "implementation-notes",
+          "path": "skills/unknown-reduction/implementation-notes",
+          "role": "member"
+        },
+        {
+          "name": "pitch-explainer",
+          "path": "skills/unknown-reduction/pitch-explainer",
+          "role": "member"
+        },
+        {
+          "name": "change-quiz",
+          "path": "skills/unknown-reduction/change-quiz",
+          "role": "member"
+        }
+      ]
+    },
+    {
+      "id": "codex-orchestration",
+      "label": "Codex Orchestration",
+      "description": "Skills for planning, delegating, verifying, and reporting complex Codex work.",
+      "skills_folder": "skills/codex-orchestration",
+      "suite_folder": "suites/codex-orchestration",
+      "skills": [
+        {
+          "name": "orchestrate-codex-workflow",
+          "path": "skills/codex-orchestration/orchestrate-codex-workflow",
+          "role": "entrypoint"
+        }
+      ]
+    },
+    {
+      "id": "design-workflow",
+      "label": "Design Workflow",
+      "description": "Skills for source-first design context, visual direction, meaningful variations, stateful prototypes, and final polish gates.",
+      "skills_folder": "skills/design-workflow",
+      "suite_folder": "suites/design-workflow",
+      "credit": {
+        "source": "https://github.com/Trystan-SA/claude-design-system-prompt",
+        "license": "MIT",
+        "note": "Inspired by the reference project and adapted into the MaybeMonad skills repository structure."
+      },
+      "skills": [
+        {
+          "name": "design-workflow",
+          "path": "skills/design-workflow/design-workflow",
+          "role": "router"
+        },
+        {
+          "name": "design-source-map",
+          "path": "skills/design-workflow/design-source-map",
+          "role": "entrypoint"
+        },
+        {
+          "name": "design-direction",
+          "path": "skills/design-workflow/design-direction",
+          "role": "member"
+        },
+        {
+          "name": "design-variations",
+          "path": "skills/design-workflow/design-variations",
+          "role": "member"
+        },
+        {
+          "name": "design-prototype",
+          "path": "skills/design-workflow/design-prototype",
+          "role": "member"
+        },
+        {
+          "name": "design-polish",
+          "path": "skills/design-workflow/design-polish",
+          "role": "member"
+        }
+      ]
+    },
+    {
+      "id": "web-reconstruction",
+      "label": "Web Reconstruction",
+      "description": "Skills for source-first website cloning, visual remixes, and WebGL/Canvas effect reconstruction.",
+      "skills_folder": "skills/web-reconstruction",
+      "suite_folder": "suites/web-reconstruction",
+      "skills": [
+        {
+          "name": "web-clone",
+          "path": "skills/web-reconstruction/web-clone",
+          "role": "entrypoint"
+        }
+      ]
+    },
+    {
+      "id": "search-growth",
+      "label": "Search Growth",
+      "description": "Skills for search-facing product surfaces, canonical URL policy, indexing inventory, and submission evidence.",
+      "skills_folder": "skills/search-growth",
+      "suite_folder": "suites/search-growth",
+      "skills": [
+        {
+          "name": "technical-seo",
+          "path": "skills/search-growth/technical-seo",
+          "role": "entrypoint"
+        }
+      ]
+    }
+  ]
+}

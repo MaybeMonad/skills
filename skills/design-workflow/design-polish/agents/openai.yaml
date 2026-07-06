@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Polish"
+  short_description: "Review, fix, and verify design quality before handoff"
+  default_prompt: "Use $design-polish as the final design quality gate."

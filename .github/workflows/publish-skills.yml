@@ -1,0 +1,123 @@
+name: Publish Skills
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/publish-skills.yml"
+      - "README.md"
+      - "catalog/**"
+      - "skills/**"
+      - "suites/**"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/publish-skills.yml"
+      - "README.md"
+      - "catalog/**"
+      - "skills/**"
+      - "suites/**"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Optional release tag, for example v1.0.0"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-skills-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Validate and publish skills
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.SKILLS_PUBLISH_TOKEN || github.token }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify skills CLI discovery
+        run: npx --yes skills add . --list
+
+      - name: Ensure gh skill publish is available
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if gh skill publish --help >/dev/null 2>&1; then
+            gh --version
+            exit 0
+          fi
+
+          if ! command -v curl >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y curl
+          fi
+
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+            | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+          sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+            | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
+          sudo apt-get update
+          sudo apt-get install -y gh
+
+          gh --version
+          gh skill publish --help >/dev/null
+
+      - name: Validate skill package
+        run: gh skill publish --dry-run
+
+      - name: Choose publish tag
+        if: github.event_name != 'pull_request'
+        id: publish_tag
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          manual_tag="${{ github.event.inputs.tag || '' }}"
+          if [[ -n "$manual_tag" ]]; then
+            tag="$manual_tag"
+          else
+            tag="v0.0.${GITHUB_RUN_NUMBER}"
+          fi
+
+          if [[ ! "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([-+][0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::Publish tag must look like a semver tag, for example v1.0.0 or v1.0.0-beta.1."
+            exit 1
+          fi
+
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "::notice::Release $tag already exists; skipping publish."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Publish skills release
+        if: github.event_name != 'pull_request' && steps.publish_tag.outputs.exists != 'true'
+        run: gh skill publish --tag "${{ steps.publish_tag.outputs.tag }}"
+
+      - name: Probe skills.sh index
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          for url in \
+            "https://skills.sh/${GITHUB_REPOSITORY}" \
+            "https://skills.sh/b/${GITHUB_REPOSITORY}"
+          do
+            echo "Checking $url"
+            if ! curl -fsSLI "$url"; then
+              echo "::notice::skills.sh has not indexed $url yet, or the endpoint returned an error."
+            fi
+          done
